@@ -1,12 +1,6 @@
 let randomNumber = Math.floor(Math.random() * 100);
-//console.log(randomNumber);
 let prompt = require("prompt-sync")();
-
-// code below (replace this example)
-
-//let answer2 = prompt("Guess a number: ");
 let answerCollection = [];
-
 let answer;
 do {
   answer = prompt("Guess a number: ");
