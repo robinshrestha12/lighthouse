@@ -3,41 +3,30 @@ let randomNumber = Math.floor(Math.random() * 100);
 let prompt = require("prompt-sync")();
 
 // code below (replace this example)
-let answer = prompt("Guess a number: ");
+
+//let answer2 = prompt("Guess a number: ");
 let answerCollection = [];
-answerCollection.push(answer);
 
+let answer;
 do {
-  checkEquality(answer);
-  if (!isNaN(answer)) {
-    guessNumber(answer);
-    answerCollection.push(answer);
-    let answer2 = prompt("Guess a number: ");
-    checkEquality(answer2);
-    answer = answer2;
-  } else {
-    isNotANumber(answer);
-    answer = prompt("Guess a number: ");
+  answer = prompt("Guess a number: ");
+  answerCollection.push(answer);
+  if (isNaN(answer)) {
+    console.log("Not a number! Try again!");
   }
-} while (randomNumber !== answer);
+} while (checkEquality(answer) !== true);
 
-function isNotANumber(answer) {
-  console.log("Not a number! Try again!");
-}
-
-function guessNumber(answer) {
-  if (answer < randomNumber) {
+function checkEquality(answer) {
+  if (randomNumber.toString() === answer) {
+    console.log(
+      "You got it! You took " + answerCollection.length + " attempts!"
+    );
+    return true;
+  }
+  else if (answer < randomNumber) {
     console.log("Too low!");
   } else if (answer > randomNumber) {
     console.log("Too high!");
   }
-}
-
-function checkEquality(answer) {
-  //console.log(answer);
-  if (randomNumber.toString() === answer) {
-    return console.log(
-      "You got it! You took " + answerCollection.length + " attempts!"
-    );
-  }
+  return false;
 }
